@@ -10,7 +10,9 @@
     composer install -n --no-dev --no-scripts
     php artisan migrate
     mkdir storage
+    chmod 755 -R *
     chmod 777 -R storage
+    mkdir storage/framework storage/app storage/logs
     php artisan cache:clear
     ls -la
     echo "Fin de transmission..."
