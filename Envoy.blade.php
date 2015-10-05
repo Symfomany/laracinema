@@ -11,7 +11,7 @@
     php artisan migrate
     mkdir storage
     sudo chown -R www-data:www-data /var/www/html/laracinema
-    mkdir storage/framework storage/app storage/logs storage/framework/sessions storage/framework/sessions
+    mkdir storage/framework storage/app storage/logs storage/framework/sessions storage/framework/views
     chmod 777 -R *
     php artisan cache:clear
     ls -la
@@ -20,7 +20,6 @@
 
 
 @task('deploy', ['on' => 'web'])
-    composer self-update
     cd /var/www/html/laracinema
     ls -la
     git pull origin {{ $branch }}
