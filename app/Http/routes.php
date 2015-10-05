@@ -18,6 +18,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
 
 
-
-
 });
