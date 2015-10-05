@@ -10,6 +10,7 @@
     php artisan migrate
     mkdir storage
     chmod 777 -R storage
+    php artisan cache:clear
     ls -la
     echo "Fin de transmission..."
 @endtask
