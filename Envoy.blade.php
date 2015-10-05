@@ -1,6 +1,7 @@
 @servers(['web' => '45.55.35.18'])
 
 @task('deployfirst', ['on' => 'web'])
+    composer self-update
     cd /var/www/html
     rm -R laracinema
     ls -la
@@ -17,9 +18,12 @@
 
 
 @task('deploy', ['on' => 'web'])
-cd /var/www/html/laracinema
-ls -la
-git pull origin {{ $branch }}
-ls -la
-echo "Fin de updating..."
+    composer self-update
+    cd /var/www/html/laracinema
+    ls -la
+    git pull origin {{ $branch }}
+    composer update
+    composer dump-autoload
+    ls -la
+    echo "Fin de updating..."
 @endtask
