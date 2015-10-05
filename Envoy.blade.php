@@ -10,9 +10,9 @@
     composer install -n --no-dev --no-scripts
     php artisan migrate
     mkdir storage
-    chmod 777 -R *
     sudo chown -R www-data:www-data /var/www/html/laracinema
-    mkdir storage/framework storage/app storage/logs
+    mkdir storage/framework storage/app storage/logs storage/framework/sessions storage/framework/sessions
+    chmod 777 -R *
     php artisan cache:clear
     ls -la
     echo "Fin de transmission..."

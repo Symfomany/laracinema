@@ -19,7 +19,7 @@
     <header class="navbar navbar-fixed-top navbar-shadow bg-dark">
       <div class="navbar-branding">
         <a class="navbar-brand" href="dashboard.html">
-          <b>Cinema</b>Admin
+          <b>Cinemas</b>Admin
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
       </div>
