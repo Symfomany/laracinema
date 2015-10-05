@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'lifetime' => 600,
+    'lifetime' => 120,
 
     'expire_on_close' => false,
 
@@ -44,7 +44,7 @@ return [
     |
     */
 
-    'encrypt' => true,
+    'encrypt' => false,
 
     /*
     |--------------------------------------------------------------------------
