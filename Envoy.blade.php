@@ -1,6 +1,6 @@
 @servers(['web' => '45.55.35.18'])
 
-@task('deploy', ['on' => 'web'])
+@task('deployfirst', ['on' => 'web'])
     cd /var/www/html
     rm -R laracinema
     ls -la
@@ -8,7 +8,17 @@
     cd laracinema
     composer install -n --no-dev --no-scripts
     php artisan migrate
-    chmod -R 0777 public/uploads app/storage
+    mkdir storage
+    chmod 777 -R storage
     ls -la
     echo "Fin de transmission..."
+@endtask
+
+
+@task('deploy', ['on' => 'web'])
+cd /var/www/html/laracinema
+ls -la
+git pull origin {{ $branch }}
+ls -la
+echo "Fin de updating..."
 @endtask

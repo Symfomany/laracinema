@@ -1,5 +1,7 @@
 <?php
 
+exit('la');
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
