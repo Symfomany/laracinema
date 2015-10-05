@@ -23,8 +23,6 @@
     cd /var/www/html/laracinema
     ls -la
     git pull origin {{ $branch }}
-    composer update
-    composer dump-autoload
     ls -la
     gulp
     echo "Fin de updating..."
