@@ -64,6 +64,18 @@ return [
             'strict'    => false,
         ],
 
+        'mongodb' => array(
+            'driver'   => 'mongodb',
+            'host'     => 'localhost',
+            'port'     => 27017,
+            'database' => 'laravel',
+            'username' => '',
+            'password' => '',
+            'options' => array(
+                'db' => 'laravel'
+            )
+        ),
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),

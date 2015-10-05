@@ -3,6 +3,32 @@
 @section('js')
     @parent
     <script src="{{ asset('js/all.js') }}"></script>
+
+    <!-- Page Javascript -->
+    <script src="{{ asset('js/demo/charts/highcharts.js') }}"></script>
+    <script src="{{ asset('js/demo/charts/highcharts.js') }}"></script>
+    <script src="{{ asset('js/demo/charts/highcharts.js') }}"></script>
+
+
+    <!-- Charts JS -->
+    <script src="{{ asset('plugins/highcharts/highcharts.js') }}"></script>
+    <script src="{{ asset('plugins/circles/circles.js') }}"></script>
+
+
+    <script>
+        jQuery(document).ready(function() {
+
+            "use strict";
+
+            // Init Theme Core
+            Core.init();
+
+            // This page contains more Initilization Javascript than normal.
+            // As a result it has its own js page. See charts.js for more info
+            demoHighCharts.init();
+
+        });
+    </script>
 @endsection
 
 @section('title')
@@ -14,80 +40,11 @@
 
         <!-- Start: Content-Wrapper -->
 
-            <!-- Start: Topbar-Dropdown -->
-            <div id="topbar-dropmenu" class="alt">
-                <div class="topbar-menu row">
-                    <div class="col-xs-4 col-sm-2">
-                        <a href="#" class="metro-tile bg-primary light">
-                            <span class="glyphicon glyphicon-inbox text-muted"></span>
-                            <span class="metro-title">Messages</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-2">
-                        <a href="#" class="metro-tile bg-info light">
-                            <span class="glyphicon glyphicon-user text-muted"></span>
-                            <span class="metro-title">Users</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-2">
-                        <a href="#" class="metro-tile bg-success light">
-                            <span class="glyphicon glyphicon-headphones text-muted"></span>
-                            <span class="metro-title">Support</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-2">
-                        <a href="#" class="metro-tile bg-system light">
-                            <span class="glyphicon glyphicon-facetime-video text-muted"></span>
-                            <span class="metro-title">Videos</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-2">
-                        <a href="#" class="metro-tile bg-warning light">
-                            <span class="fa fa-gears text-muted"></span>
-                            <span class="metro-title">Settings</span>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 col-sm-2">
-                        <a href="#" class="metro-tile bg-alert light">
-                            <span class="glyphicon glyphicon-picture text-muted"></span>
-                            <span class="metro-title">Pictures</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- End: Topbar-Dropdown -->
+                @include('Admin/Partials/_topmenu')
+                @include('Admin/Partials/_topbar')
 
-            <!-- Start: Topbar -->
-            <header id="topbar" class="ph10">
-                <div class="topbar-left">
-                    <ul class="nav nav-list nav-list-topbar pull-left">
-                        <li class="active">
-                            <a href="ecommerce_dashboard.html">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="ecommerce_products.html">Products</a>
-                        </li>
-                        <li>
-                            <a href="ecommerce_orders.html">Orders</a>
-                        </li>
-                        <li>
-                            <a href="ecommerce_customers.html">Customers</a>
-                        </li>
-                        <li>
-                            <a href="ecommerce_settings.html">Settings</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="topbar-right hidden-xs hidden-sm">
-                    <a href="ecommerce_orders.html" class="btn btn-default btn-sm fw600 ml10">
-                        <span class="fa fa-plus pr5"></span> New Order</a>
-                    <a href="ecommerce_products.html" class="btn btn-default btn-sm fw600 ml10">
-                        <span class="fa fa-plus pr5"></span> Add Product</a>
-                    <a href="ecommerce_customers.html" class="btn btn-default btn-sm fw600 ml10">
-                        <span class="fa fa-user pr5"></span> Add Customer</a>
-                </div>
-            </header>
-            <!-- End: Topbar -->
+
+
 
             <!-- Begin: Content -->
             <section id="content" class="table-layout animated fadeIn">
@@ -100,8 +57,8 @@
                         <div class="col-sm-4 col-xl-3">
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
-                                    <h1 class="fs30 mt5 mbn">1,426</h1>
-                                    <h6 class="text-system">NEW ORDERS</h6>
+                                    <h1 class="fs30 mt5 mbn">{{ $nbComments  }}</h1>
+                                    <h6 class="text-system">Nb. Comments</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                   <span class="fs11">
@@ -115,7 +72,7 @@
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
                                     <h1 class="fs30 mt5 mbn">63,262</h1>
-                                    <h6 class="text-success">TOTAL SALES GROSS</h6>
+                                    <h6 class="text-success">Nb de séances</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                   <span class="fs11">
@@ -129,7 +86,7 @@
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
                                     <h1 class="fs30 mt5 mbn">248</h1>
-                                    <h6 class="text-warning">PENDING SHIPMENTS</h6>
+                                    <h6 class="text-warning">Nb de Users</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                   <span class="fs11">
@@ -143,7 +100,7 @@
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
                                     <h1 class="fs30 mt5 mbn">6,718</h1>
-                                    <h6 class="text-danger">UNIQUE VISITS</h6>
+                                    <h6 class="text-danger">Nb de Commentaires</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                   <span class="fs11">
@@ -154,11 +111,59 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <!-- Pie Chart -->
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <span class="panel-title fw600 text-info">Répartition par catégories des films</span>
+                                </div>
+                                <div class="panel-body pn">
+                                    <div id="high-pie" style="width: 100%; height: 210px; margin: 0 auto" data-highcharts-chart="6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <!-- Circle Stats -->
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <span class="panel-title fw600 text-info">Statistiques</span>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="mb20 text-right">
+                                        <span class="fs11 text-muted">
+                                          <i class="fa fa-circle text-warning fs12 pr5"></i> Twitter</span>
+                                        <span class="fs11 text-muted ml10">
+                                          <i class="fa fa-circle text-info fs12 pr5"></i> Facebook</span>
+                                        <span class="fs11 text-muted ml10">
+                                          <i class="fa fa-circle text-primary fs12 pr5"></i> Google+</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 text-center">
+                                            <div class="info-circle" id="c1" title="Twitter" value="80" data-circle-color="primary">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="info-circle" id="c2" title="Facebook" value="30" data-circle-color="info">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="info-circle" id="c3" title="Behance" value="55" data-circle-color="warning">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- dashboard metric chart -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <span class="panel-title"> Revenue</span>
+                            <span class="panel-title"> Croissances des films pour les meilleures catégories</span>
                         </div>
                         <div class="panel-body pn">
                             <div id="ecommerce_chart1" style="height: 300px;"></div>
@@ -350,245 +355,19 @@
                         </div>
                     </div>
 
-                    <!-- info traffic panels -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <span class="panel-title">Top Geographic Sources</span>
-                                </div>
-                                <div class="panel-body pn">
-                                    <table class="table mbn tc-med-1 tc-bold-last">
-                                        <thead>
-                                        <tr class="hidden">
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <span class="flag-xs flag-us mr5 va-b"></span>United States</td>
-                                            <td>28%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="flag-xs flag-de mr5 va-b"></span>Germany</td>
-                                            <td>25%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="flag-xs flag-fr mr5 va-b"></span>France</td>
-                                            <td>21%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="flag-xs flag-tr mr5 va-b"></span>Spain</td>
-                                            <td>18%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="flag-xs flag-es mr5 va-b"></span>Turkey</td>
-                                            <td>10%</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Search List -->
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <span class="panel-title">Top Referals</span>
-                                </div>
-                                <div class="panel-body pn">
-                                    <table class="table mbn tc-med-1 tc-bold-last">
-                                        <thead>
-                                        <tr class="hidden">
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <span class="favicons google va-t mr10"></span>http://madeupurl.com/pictures/doors</td>
-                                            <td>28%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="favicons google va-t mr10"></span>http://secondulr.com/article/14</td>
-                                            <td>25%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="favicons yahoo va-t mr10"></span>http://urlthird.com/infogram/ten</td>
-                                            <td>21%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="favicons google va-t mr10"></span>http://fourthlink.com/boats/glass</td>
-                                            <td>18%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span class="favicons bing va-t mr10"></span>http://lastlink.com/thebest/ever</td>
-                                            <td>10%</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <!-- end: .tray-center -->
 
-                <!-- begin: .tray-right -->
-                <aside class="tray tray-right tray290 pn" data-tray-height="match">
+                @include('Admin/Partials/_rightnotifications')
 
-                    <!-- store activity timeline -->
-                    <ol class="timeline-list pl5 mt5">
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-dark light">
-                                <span class="fa fa-tags"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Michael</b> Added a new item to his store:
-                                <a href="#">Ipod</a>
-                            </div>
-                            <div class="timeline-date">1:25am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-dark light">
-                                <span class="fa fa-tags"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Sara</b> Added a new item to his store:
-                                <a href="#">Notebook</a>
-                            </div>
-                            <div class="timeline-date">3:05am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-success">
-                                <span class="fa fa-usd"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Admin</b> created a new invoice for:
-                                <a href="#">Software</a>
-                            </div>
-                            <div class="timeline-date">4:15am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-warning">
-                                <span class="fa fa-pencil"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Laura</b> edited her work experience</div>
-                            <div class="timeline-date">5:25am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-success">
-                                <span class="fa fa-usd"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Admin</b> created a new invoice for:
-                                <a href="#">Apple Inc.</a>
-                            </div>
-                            <div class="timeline-date">7:45am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-dark light">
-                                <span class="fa fa-tags"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Michael</b> Added a new item to his store:
-                                <a href="#">Ipod</a>
-                            </div>
-                            <div class="timeline-date">8:25am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-dark light">
-                                <span class="fa fa-tags"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Sara</b> Added a new item to his store:
-                                <a href="#">Watch</a>
-                            </div>
-                            <div class="timeline-date">9:35am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-system">
-                                <span class="fa fa-fire"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Admin</b> created a new invoice for:
-                                <a href="#">Software</a>
-                            </div>
-                            <div class="timeline-date">4:15am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-warning">
-                                <span class="fa fa-pencil"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Laura</b> edited her work experience</div>
-                            <div class="timeline-date">5:25am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-success">
-                                <span class="fa fa-usd"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Admin</b> created a new invoice for:
-                                <a href="#">Software</a>
-                            </div>
-                            <div class="timeline-date">4:15am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-warning">
-                                <span class="fa fa-pencil"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Laura</b> edited her work experience</div>
-                            <div class="timeline-date">5:25am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-success">
-                                <span class="fa fa-usd"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Admin</b> created a new invoice for:
-                                <a href="#">Apple Inc.</a>
-                            </div>
-                            <div class="timeline-date">7:45am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-dark light">
-                                <span class="fa fa-tags"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Michael</b> Added a new item to his store:
-                                <a href="#">Ipod</a>
-                            </div>
-                            <div class="timeline-date">8:25am</div>
-                        </li>
-                        <li class="timeline-item">
-                            <div class="timeline-icon bg-dark light">
-                                <span class="fa fa-tags"></span>
-                            </div>
-                            <div class="timeline-desc">
-                                <b>Sara</b> Added a new item to his store:
-                                <a href="#">Watch</a>
-                            </div>
-                            <div class="timeline-date">9:35am</div>
-                        </li>
-                    </ol>
 
-                </aside>
-                <!-- end: .tray-right -->
+
+
+
+
+
+
 
             </section>
             <!-- End: Content -->

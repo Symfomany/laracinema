@@ -26,5 +26,6 @@
     composer update
     composer dump-autoload
     ls -la
+    gulp
     echo "Fin de updating..."
 @endtask
