@@ -71,6 +71,16 @@
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/demo/widgets.js') }}"></script>
 
+<script>
+    jQuery(document).ready(function() {
+
+        "use strict";
+
+        // Init Theme Core
+        Core.init();
+
+    });
+</script>
 @show
 
 </body>
