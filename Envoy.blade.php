@@ -24,6 +24,6 @@
     ls -la
     git pull origin {{ $branch }}
     ls -la
-    gulp
+    chmod 777 -R storage
     echo "Fin de updating..."
 @endtask

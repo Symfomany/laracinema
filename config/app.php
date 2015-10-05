@@ -146,11 +146,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /**
-         * Profiler
-         */
-        Barryvdh\Debugbar\ServiceProvider::class,
-
-        /**
          * MongoDB
          */
         Jenssegers\Mongodb\MongodbServiceProvider::class,
