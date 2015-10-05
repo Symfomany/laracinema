@@ -36,7 +36,7 @@
 
 </head>
 
-<body class="@section('bodyclass')ecommerce-page @show">
+<body  class="@section('bodyclass')ecommerce-page @show">
 
 <!-- Start: Main -->
 <div id="main">
@@ -46,6 +46,7 @@
 
     @include('Admin/Partials/_flashdatas')
     <section id="content_wrapper">
+
         @yield('content')
     </section>
     @include('Admin/Partials/_rsidebar')
@@ -58,21 +59,15 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="{{ asset('jquery/jquery_ui/jquery-ui.min.js') }}"></script>
 
-<!-- HighCharts Plugin -->
-<script src="{{ asset('plugins/highcharts/highcharts.js') }}"></script>
-
 <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
 {{--<script src="vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>--}}
 {{--<script src="vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script>--}}
 
 <!-- FullCalendar Plugin + moment Dependency -->
-{{--<script src="vendor/plugins/fullcalendar/lib/moment.min.js"></script>--}}
-{{--<script src="vendor/plugins/fullcalendar/fullcalendar.min.js"></script>--}}
 <script src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
 <script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 
 <!-- Theme Javascript -->
-<script src="{{ asset('js/utility/utility.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/demo/widgets.js') }}"></script>
 

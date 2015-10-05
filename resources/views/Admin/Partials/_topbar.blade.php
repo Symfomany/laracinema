@@ -37,13 +37,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="topbar-right hidden-xs hidden-sm">
+
+                <div class="topbar-right ">
                     <a href="ecommerce_orders.html" class="btn btn-default btn-sm fw600 ml10">
                         <span class="fa fa-plus pr5"></span> Nouveaux film</a>
                     <a href="ecommerce_products.html" class="btn btn-default btn-sm fw600 ml10">
                         <span class="fa fa-plus pr5"></span> Nouvel acteur</a>
                     <a href="ecommerce_customers.html" class="btn btn-default btn-sm fw600 ml10">
                         <span class="fa fa-plus pr5"></span> Nouvelle séances</a>
+                    <div class="ml15 ib va-m" id="toggle_sidemenu_r">
+                        <a href="#" class="pl5">
+                            <i class="fa fa-sign-in fs22 text-primary"></i>
+                            <span class="badge badge-danger badge-hero">3</span>
+                        </a>
+                    </div>
                 </div>
 
             </header>
