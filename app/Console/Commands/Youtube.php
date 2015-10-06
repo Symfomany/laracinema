@@ -48,7 +48,7 @@ class Youtube extends Command
             'q'             => $keyword,
             'type'          => 'video',
             'part'          => 'id, snippet',
-            'maxResults'    => 20
+            'maxResults'    => 30
         );
 
         $videos = Yt::searchAdvanced($params, true)['results'];

@@ -240,6 +240,7 @@
                             </div>
 
                     </div>
+                    <hr class="clear" />
 
 
                     <div class="row">
@@ -344,88 +345,39 @@
 
                                 </div>
                         </div>
-                        <div class="row">
-                            {{--<div class="col-md-4">--}}
 
-                            {{--<div class="panel">--}}
-                                {{--<div class="panel-heading">--}}
-                                    {{--<span class="panel-title">--}}
-                                      {{--<span class="glyphicon glyphicon-facetime-video"></span> Allociné Video </span>--}}
-                                    {{--<div class="panel-header-menu pull-right mr10 text-muted fs12"> November 27, 2012 </div>--}}
-                                {{--</div>--}}
-                                {{--<div class="panel-body">--}}
-                                    {{--<div class="embed-responsive embed-responsive-16by9">--}}
-                                        {{--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eVL96Rh_HRU" frameborder="0" allowfullscreen=""></iframe>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+                        <div class="row">
 
                             <div class="col-md-4">
-                                <div class="panel tagcloud-widget">
+                                <div class="pane panel panel-info">
                                     <div class="panel-heading">
                                 <span class="panel-icon">
                                   <i class="fa fa-pencil"></i>
                                 </span>
                                         <span class="panel-title"> Mot-Clefs</span>
                                     </div>
-                                    <div class="panel-body">
-                                        <span class="label label-primary">Photoshop</span>
-                                        <span class="label label-primary">Fireworks</span>
-                                        <span class="label label-primary">Dreamweaver</span>
-                                        <span class="label label-primary">Sublime</span>
-                                        <span class="label label-primary">Firefox</span>
-                                        <span class="label label-primary">Chrome</span>
-                                        <span class="label label-primary">Microsoft</span>
-                                        <span class="label label-primary">Apple</span>
-                                        <span class="label label-primary">Google</span>
-                                        <span class="label label-primary">Facebook</span>
-                                        <span class="label label-primary">Twitter</span>
-                                        <span class="label label-primary">LinkedIn</span>
-                                        <span class="label label-primary">Design</span>
+                                    <div class="panel-body border panel-scroller scroller-lg pn">
+                                        @foreach($tweets as $tweet)
+                                            <table class="table mbn tc-med-1 tc-bold-last">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            {!! Twitter::linkify($tweet['data']['text']) !!}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-info"><span class="fa fa-clock-o"></span> {{  Twitter::ago($tweet['data']['created_at']) }}</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        @endforeach
+                                        <p></p>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-md-4">
-
-
-                                <div class="panel listgroup-widget">
-                                    <div class="panel-heading">
-                                <span class="panel-icon">
-                                  <i class="fa fa-tag"></i>
-                                </span>
-                                        <span class="panel-title"> Catégories de films</span>
-                                    </div>
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <span class="badge badge-primary">14</span>
-                                            Entertainment
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span class="badge badge-success">9</span>
-                                            Movies
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span class="badge badge-info">11</span>
-                                            TV Shows
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span class="badge badge-warning">18</span>
-                                            Celebs &amp; Gossip
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span class="badge badge-danger">22</span>
-                                            Video Games
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span class="badge badge-alert">9</span>
-                                            Sports &amp; Events
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-
+                           
                         <div class="col-md-6">
 
                             <!-- Task Widget -->
