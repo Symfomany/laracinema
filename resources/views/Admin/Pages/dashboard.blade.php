@@ -354,7 +354,7 @@
                                 <span class="panel-icon">
                                   <i class="fa fa-pencil"></i>
                                 </span>
-                                        <span class="panel-title"> Mot-Clefs</span>
+                                        <span class="panel-title"> <span class="fa fa-twitter"></span> Tweets</span>
                                     </div>
                                     <div class="panel-body border panel-scroller scroller-lg pn">
                                         @foreach($tweets as $tweet)
@@ -377,7 +377,7 @@
 
                                 </div>
                             </div>
-                           
+
                         <div class="col-md-6">
 
                             <!-- Task Widget -->
