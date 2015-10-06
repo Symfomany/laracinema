@@ -23,6 +23,7 @@
     cd /var/www/html/laracinema
     ls -la
     git pull origin {{ $branch }}
+    composer update  --prefer-dist --no-dev --no-scripts
     chmod 777 -R storage
     echo "Fin de updating..."
 @endtask
