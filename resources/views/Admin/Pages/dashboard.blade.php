@@ -84,12 +84,12 @@
                         <div class="col-sm-4 col-xl-3">
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
-                                    <h1 class="fs30 mt5 mbn">{{ $nbComments  }}</h1>
-                                    <h6 class="text-system">Nb. Comments</h6>
+                                    <h1 class="fs30 mt5 mbn">{{ $nbfilms  }}</h1>
+                                    <h6 class="text-system">Nb. de Films</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                   <span class="fs11">
-                    <i class="fa fa-arrow-up pr5"></i> 3% INCREASE
+                    <i class="fa fa-arrow-up pr5 text-success"></i> 7 actifs
                     <b>1W AGO</b>
                   </span>
                                 </div>
@@ -98,12 +98,12 @@
                         <div class="col-sm-4 col-xl-3">
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
-                                    <h1 class="fs30 mt5 mbn">63,262</h1>
+                                    <h1 class="fs30 mt5 mbn">{{ $nbseances  }}</h1>
                                     <h6 class="text-success">Nb de séances</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                   <span class="fs11">
-                    <i class="fa fa-arrow-up pr5"></i> 2.7% INCREASE
+                    <i class="fa fa-arrow-up pr5 text-success"></i> 2 films à venir
                     <b>1W AGO</b>
                   </span>
                                 </div>
@@ -112,12 +112,12 @@
                         <div class="col-sm-4 col-xl-3">
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
-                                    <h1 class="fs30 mt5 mbn">248</h1>
+                                    <h1 class="fs30 mt5 mbn">{{ $nbusers  }}</h1>
                                     <h6 class="text-warning">Nb de Users</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                                   <span class="fs11">
-                                    <i class="fa fa-arrow-up pr5 text-success"></i> 1% INCREASE
+                                    <i class="fa fa-arrow-up pr5 text-success"></i> 5 de confirmer
                                     <b>1W AGO</b>
                                   </span>
                                 </div>
@@ -126,12 +126,12 @@
                         <div class="col-sm-3 col-xl-3 visible-xl">
                             <div class="panel panel-tile text-center br-a br-grey">
                                 <div class="panel-body">
-                                    <h1 class="fs30 mt5 mbn">6,718</h1>
+                                    <h1 class="fs30 mt5 mbn">{{ $nbcomments  }}</h1>
                                     <h6 class="text-danger">Nb de Commentaires</h6>
                                 </div>
                                 <div class="panel-footer br-t p12">
                                   <span class="fs11">
-                                    <i class="fa fa-arrow-down pr5 text-danger"></i> 6% DECREASE
+                                    <i class="fa fa-arrow-down pr5 text-danger"></i> 5 actifs
                                     <b>1W AGO</b>
                                   </span>
                                 </div>

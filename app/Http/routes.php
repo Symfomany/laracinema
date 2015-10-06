@@ -11,11 +11,9 @@ Route::controllers([
 
 ### GROUPE ADMIN ###
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
-
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' =>  ['auth', 'enable']], function() {
 
     # HOME
     Route::get('/', ['uses' => 'DashboardController@dashboard', 'as' => 'dashboard']);
-
 
 });

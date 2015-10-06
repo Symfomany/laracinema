@@ -14,6 +14,9 @@ class HomeTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/admin')
-             ->see('dashboard');
+            ->followRedirects()
+             ->see('Email')
+             ->see('Password')
+             ->see('Remember');
     }
 }

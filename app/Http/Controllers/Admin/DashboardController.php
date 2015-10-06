@@ -11,6 +11,7 @@ use App\Model\Categories;
 use App\Model\Comments;
 use App\Model\Movies;
 use App\Model\Sessions;
+use App\Model\Users;
 use Carbon\Carbon;
 
 class DashBoardController extends Controller{
@@ -58,7 +59,6 @@ class DashBoardController extends Controller{
         $datas = [
             'dob' => $actor->actorsAge(),
             'city' => $actor->actorsorigin(),
-            'nbComments' => $nbComments,
             'nbCommentsActifs' => $nbCommentsActifs,
             'nbCommentsValidation' => Comments::statutComments(1)->count(),
             'nbCommentsInactifs' => Comments::statutComments(0)->count(),
@@ -67,6 +67,10 @@ class DashBoardController extends Controller{
             'tauxFilmsVisible' => round($nbVisibleMovies / $nbMovies * 100),
             'categories' => $categorie->categories(),
             'nbSessions' => $session->nextSessions()->count(),
+            'nbseances' => Sessions::count(),
+            'nbcomments' => $nbComments,
+            'nbfilms' => Movies::count(),
+            'nbusers' => Users::count(),
             'nextSessions' => $nextSessions,
             'delaiNextSessions' => $delaiNextSessions,
 

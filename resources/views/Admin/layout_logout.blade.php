@@ -40,17 +40,9 @@
 
 <!-- Start: Main -->
 <div id="main" class="animated fadeIn">
-
-    @include('Admin/Partials/_header')
-    @include('Admin/Partials/_sidebar')
-
-    @include('Admin/Partials/_flashdatas')
     <section id="content_wrapper">
-
         @yield('content')
     </section>
-    @include('Admin/Partials/_rsidebar')
-
 </div>
 
 

@@ -75,7 +75,7 @@
 
         <!-- Start: Sidebar Collapse Button -->
         <div class="sidebar-toggle-mini">
-            <a href="#">
+            <a href="{{ url('auth/logout') }}">
                 <span class="fa fa-sign-out"></span>
             </a>
         </div>

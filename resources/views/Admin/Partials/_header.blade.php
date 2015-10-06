@@ -47,14 +47,14 @@
         <li class="dropdown menu-merge">
           <div class="navbar-btn btn-group">
             <button data-toggle="dropdown" class="btn btn-sm dropdown-toggle">
-              <span class="fa fa-bell-o fs14 va-m"></span>
+              <span class="fa fa-film fs14 va-m"></span>
               <span class="badge badge-danger">9</span>
             </button>
-            <div class="dropdown-menu dropdown-persist w350 animated animated-shorter fadeIn" role="menu">
+            <div class="dropdown-menu dropdown-persist w350 animated animated-short flipInX" role="menu">
               <div class="panel mbn">
                   <div class="panel-menu">
                      <span class="panel-icon"><i class="fa fa-clock-o"></i></span>
-                     <span class="panel-title fw600"> Recent Activity</span>
+                     <span class="panel-title fw600"> Films</span>
                      <button class="btn btn-default light btn-xs pull-right" type="button"><i class="fa fa-refresh"></i></button>
                   </div>
                   <div class="panel-body panel-scroller scroller-navbar scroller-overlay scroller-pn pn">
@@ -165,7 +165,7 @@
               <span class="ad ad-radio-tower fs14 va-m"></span>
               <span class="badge">5</span>
             </button>
-            <div class="dropdown-menu dropdown-persist w350 animated animated-shorter fadeIn" role="menu">
+            <div class="dropdown-menu dropdown-persist w350 animated animated-short flipInX" role="menu">
               <div class="panel mbn">
                   <div class="panel-menu">
                     <div class="btn-group btn-group-justified btn-group-nav" role="tablist">
@@ -543,35 +543,14 @@
             </div>
           </div>
         </li>
-				<li class="dropdown menu-merge">
-					<div class="navbar-btn btn-group">
-	          <button data-toggle="dropdown" class="btn btn-sm dropdown-toggle">
-		          <span class="flag-xs flag-us"></span>
-		          <!-- <span class="caret"></span> -->
-	          </button>
-	          <ul class="dropdown-menu pv5 animated animated-short flipInX" role="menu">
-	            <li>
-	              <a href="javascript:void(0);">
-	                <span class="flag-xs flag-in mr10"></span> Hindu </a>
-	            </li>
-	            <li>
-	              <a href="javascript:void(0);">
-	                <span class="flag-xs flag-tr mr10"></span> Turkish </a>
-	            </li>
-	            <li>
-	              <a href="javascript:void(0);">
-	                <span class="flag-xs flag-es mr10"></span> Spanish </a>
-	            </li>
-	          </ul>
-	        </div>
-				</li>
+
         <li class="menu-divider hidden-xs">
           <i class="fa fa-circle"></i>
         </li>
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
           	<span  alt="avatar" class="mw30 br64 fa fa-user"></span>
-          	<span class="hidden-xs pl15"> Julien B. </span>
+          	<span class="hidden-xs pl15"> {{ Auth::user()->firstname }} </span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
@@ -617,8 +596,8 @@
                 <span class="fa fa-gear"></span> Settings </a>
             </li>
             <li class="dropdown-footer">
-              <a href="#" class="">
-              <span class="fa fa-power-off pr5"></span> Logout </a>
+              <a href="{{ url('auth/logout') }}" class="">
+              <span class="fa fa-power-off pr5"></span> Deconnexion </a>
             </li>
           </ul>
         </li>
