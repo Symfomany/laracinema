@@ -13,12 +13,16 @@ use App\Model\Movies;
 use App\Model\Sessions;
 use App\Model\Users;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashBoardController extends Controller{
 
 
 
     public function dashboard(){
+
+
+        $videos =  DB::connection('mongodb')->collection('videos')->get();
 
         $actor = new Actors();
         $movie = new Movies();
@@ -57,6 +61,7 @@ class DashBoardController extends Controller{
         }
 
         $datas = [
+            'videos' => $videos,
             'dob' => $actor->actorsAge(),
             'city' => $actor->actorsorigin(),
             'nbCommentsActifs' => $nbCommentsActifs,

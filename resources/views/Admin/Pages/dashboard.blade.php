@@ -1,6 +1,10 @@
 @extends('Admin/layout')
 
-@section('bodyclass')widgets-scroller-page@endsection
+@section('bodyclass') widgets-scroller-page @endsection
+@section('css')
+    @parent
+    <link href="{{ asset('plugins/slick/slick.css') }}" rel="stylesheet" />
+@endsection
 @section('js')
     @parent
     <script src="{{ asset('js/all.js') }}"></script>
@@ -12,6 +16,7 @@
     <!-- Charts JS -->
     <script src="{{ asset('plugins/highcharts/highcharts.js') }}"></script>
     <script src="{{ asset('plugins/circles/circles.js') }}"></script>
+    <script src="{{ asset('plugins/slick/slick.js') }}"></script>
 
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeJJa0CpvMqUJop4sOh3w8N3roqzfV_cg&libraries=geometry">
@@ -28,6 +33,31 @@
             // This page contains more Initilization Javascript than normal.
             // As a result it has its own js page. See charts.js for more info
             demoHighCharts.init();
+
+            $('.center-mode').slick({
+                dots: true,
+                centerMode: false,
+                autoplay: true,
+                centerPadding: '60px',
+                slidesToShow: 7,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                }, {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }]
+            });
 
             $('#map_canvas2').gmap({
                 'disableDefaultUI': true,
@@ -193,6 +223,24 @@
                         </div>
                     </div>
 
+                    <div class="row">
+
+
+                            <div class="slider-demo7">
+                                    <div class="center-mode">
+                                        @foreach($videos as $video)
+                                                <div class="slick-slide">
+                                                        <a href="https://www.youtube.com/watch?v={{ $video['data']['id']['videoId'] }}" target="_blank">
+                                                            <img src="{{ $video['data']['snippet']['thumbnails']['default']['url'] }}" />
+                                                        </a>
+
+                                                </div>
+                                        @endforeach
+                                     </div>
+                            </div>
+
+                    </div>
+
 
                     <div class="row">
                         <div class="col-md-8">
@@ -286,9 +334,9 @@
                                     <div class="panel-footer">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Enter your message here...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default btn-gradient" type="button">Send Message</button>
-                      </span>
+                                              <span class="input-group-btn">
+                                                <button class="btn btn-default btn-gradient" type="button">Send Message</button>
+                                              </span>
                                         </div>
                                         <!-- /input-group -->
                                     </div>
@@ -297,6 +345,21 @@
                                 </div>
                         </div>
                         <div class="row">
+                            {{--<div class="col-md-4">--}}
+
+                            {{--<div class="panel">--}}
+                                {{--<div class="panel-heading">--}}
+                                    {{--<span class="panel-title">--}}
+                                      {{--<span class="glyphicon glyphicon-facetime-video"></span> Allociné Video </span>--}}
+                                    {{--<div class="panel-header-menu pull-right mr10 text-muted fs12"> November 27, 2012 </div>--}}
+                                {{--</div>--}}
+                                {{--<div class="panel-body">--}}
+                                    {{--<div class="embed-responsive embed-responsive-16by9">--}}
+                                        {{--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eVL96Rh_HRU" frameborder="0" allowfullscreen=""></iframe>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
 
                             <div class="col-md-4">
                                 <div class="panel tagcloud-widget">

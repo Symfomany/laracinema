@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Handlers\Events\Email',
             'App\Handlers\Events\Log',
         ],
+        'auth.login' => [
+            'App\Handlers\Events\AuthLoginEventHandler',
+        ],
     ];
 
     /**

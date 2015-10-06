@@ -170,6 +170,14 @@ class AuthController extends Controller
     {
         return view('Admin/Auth/login');
     }
+    public function getLock()
+    {
+        return view('Admin/Auth/lock');
+    }
+    public function getConfirmed()
+    {
+        return view('Admin/Auth/confirmed');
+    }
 
     public function getRegister()
     {

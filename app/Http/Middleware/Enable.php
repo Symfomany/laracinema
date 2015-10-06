@@ -24,7 +24,7 @@ class Enable
         if($user->active == 0 || $user->expiration_date < $now->format('Y-m-d H:i:s')){
             Auth::logout();
             Session::flash('danger', "Vous devez confirmer votre compte ou votre période d'essaie est terminée");
-            return redirect('auth/login');
+            return redirect('auth/lock');
         }
         return $next($request);
     }

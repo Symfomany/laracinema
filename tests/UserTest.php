@@ -136,14 +136,31 @@ class UserTest extends TestCase
 
     /**
      * Test existing database
-     *
      * @return void
      */
-    public function testExtistingDatabase()
+    public function testExtistingDatabaseAndMongo()
     {
 
         $this->seeInDatabase('administrators', ['email' => 'julien@meetserious.com']);
         $this->seeInDatabase('administrators', ['email' => 'julien2@meetserious.com']);
+
+        $connection = \Illuminate\Support\Facades\DB::connection('mongodb');
+        $this->assertInstanceOf('Jenssegers\Mongodb\Connection', $connection);
+
+        $dbs = DB::connection('mongodb')->listCollections();
+        $this->assertTrue(is_array($dbs));
+
+        $collection = DB::connection('mongodb')->getCollection('notifications');
+        $this->assertInstanceOf('Jenssegers\Mongodb\Collection', $collection);
+
+        $dbs = DB::connection('mongodb')->listCollections();
+        $this->assertTrue(is_array($dbs));
+
+        \App\Model\Notifications::where('user.email', '=' ,'julien@meetserious.com')->firstOrFail();
+
     }
+
+
+
 
 }

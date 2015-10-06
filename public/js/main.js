@@ -1,4 +1,25 @@
 'use strict';
+
+
+
+
+$.sessionTimeout({
+   keepAliveUrl: '',
+   title: 'Votre session a expirée!',
+   message: 'Votre session a expirée!',
+   logoutButton: 'Deconnexion',
+   keepAliveButton: 'Restez connecté',
+   logoutUrl: 'auth/logout',
+   redirUrl: 'auth/lock',
+   warnAfter: 60000,
+   redirAfter: 100000,
+   countdownBar: true,
+   countdownMessage: 'Redirection dans {timer} secondes.',
+   onStart: function (opts) {},
+});
+
+
+
 /*! main.js - v0.1.1
  * http://admindesigns.com/
  * Copyright (c) 2015 Admin Designs;*/
@@ -724,6 +745,10 @@ var Core = function(options) {
       }
 
    }
+
+
+
+
 }();
 
 // Global Library of Theme colors for Javascript plug and play use  

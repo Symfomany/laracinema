@@ -4,7 +4,7 @@
 <head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-    <title>@section('bodyclass') A Responsive Dashboard Cinema @show</title>
+    <title>@section('title') A Responsive Dashboard Cinema @show</title>
 
     <meta name="author" content="AbsoluteAdmin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +36,7 @@
 
 </head>
 
-<body  class="@section('bodyclass')ecommerce-page @show">
+<body  class="@section('bodyclass') ecommerce-page @show">
 
 <!-- Start: Main -->
 <div id="main" class="animated fadeIn">
@@ -66,6 +66,8 @@
 <!-- FullCalendar Plugin + moment Dependency -->
 <script src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
 <script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+<script src="{{ asset('plugins/bstimeout/bs-timeout.js') }}"></script>
+<script src="{{ asset('plugins/nprogress/nprogress.js') }}"></script>
 
 <!-- Theme Javascript -->
 <script src="{{ asset('js/main.js') }}"></script>
@@ -78,6 +80,9 @@
 
         // Init Theme Core
         Core.init();
+
+
+
 
     });
 </script>

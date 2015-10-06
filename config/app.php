@@ -150,6 +150,19 @@ return [
          */
         Jenssegers\Mongodb\MongodbServiceProvider::class,
 
+
+        /**
+         * Twitter API
+         */
+        Thujohn\Twitter\TwitterServiceProvider::class,
+
+
+        /**
+         * Youtube API
+         */
+        Alaouy\Youtube\YoutubeServiceProvider::class
+
+
     ],
 
     /*
@@ -198,7 +211,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+
 
     ],
 
