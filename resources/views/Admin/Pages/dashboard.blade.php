@@ -498,15 +498,15 @@
 
                         </div>
 
-                            <div class="col-md-6">
+                        <div class="col-md-6">
 
                                 <div class="bs-component">
                                     <div class="panel">
                                         <div class="panel-heading">
-                      <span class="panel-icon">
-                        <i class="fa fa-clock-o"></i>
-                      </span>
-                                            <span class="panel-title"> Activity/Timeline Widget</span>
+                                          <span class="panel-icon">
+                                            <i class="fa fa-clock-o"></i>
+                                          </span>
+                                        <span class="panel-title"> Activity/Timeline Widget</span>
                                         </div>
                                         <div class="panel-body ptn pbn p10">
                                             <ol class="timeline-list">
@@ -609,6 +609,145 @@
 
 
                     </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+
+                                <div class="panel listgroup-widget">
+                                    <div class="panel-heading">
+                                <span class="panel-icon">
+                                  <i class="fa fa-tag"></i>
+                                </span>
+                                        <span class="panel-title"> Catégories de films</span>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <span class="badge badge-primary">14</span>
+                                            Entertainment
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-success">9</span>
+                                            Movies
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-info">11</span>
+                                            TV Shows
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-warning">18</span>
+                                            Celebs &amp; Gossip
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-danger">22</span>
+                                            Video Games
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-alert">9</span>
+                                            Sports &amp; Events
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <div class="col-md-4">
+
+
+                                <div class="panel listgroup-widget">
+                                    <div class="panel-heading">
+                                <span class="panel-icon">
+                                  <i class="fa fa-youtube"></i>
+                                </span>
+                                        <span class="panel-title">Statistiques de Youtube</span>
+                                        <sub>Mis à jour   {{ \Carbon\Carbon::createFromTimeStamp(strtotime($youtubeinfodateupdated))->diffForHumans() }}
+                                        </sub>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+
+                                            <h3><span class="fa fa-youtube-play"></span><b> {{ $youtubeinfo['snippet']['title']  }}</b></h3>
+                                        </li>
+                                        <li class="list-group-item">
+                                                <p class="row">
+                                                    <img class="pull-right" src="{{ $youtubeinfo['snippet']['thumbnails']['default']['url']  }}" />
+                                                    {{ $youtubeinfo['snippet']['description']  }}
+                                                </p>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            <span class="badge badge-primary">
+                                                {{ $youtubeinfo['statistics']['viewCount']  }}
+                                            </span>
+                                            Nombre de vues
+
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-success">{{ $youtubeinfo['statistics']['commentCount']  }}</span>
+                                            Nombre de commentaires
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-info">{{ $youtubeinfo['statistics']['subscriberCount']  }}</span>
+                                            Nombre de membres
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-warning">{{ $youtubeinfo['statistics']['videoCount']  }}</span>
+                                            Nombre de vidéo
+                                        </li>
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+
+
+                                <div class="panel listgroup-widget">
+                                    <div class="panel-heading">
+                                <span class="panel-icon">
+                                  <i class="fa fa-twitter-square"></i>
+                                </span>
+                                        <span class="panel-title">Statistiques de Twitter</span>
+                                        <sub>Mis à jour   {{ \Carbon\Carbon::createFromTimeStamp(strtotime($tweeterinfodateupdated))->diffForHumans() }}
+                                        </sub>
+                                    </div>
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                              <h3>
+                                                  <span class="fa fa-twitter-square"></span>
+                                                  {{ $tweeterinfo['name']  }}
+                                              </h3>
+
+                                        </li>
+                                        <li class="list-group-item">
+                                                <p class="row">
+                                                    <img class="pull-right" src="{{ $tweeterinfo['profile_image_url']  }}" />
+                                                    {{ $tweeterinfo['description']  }}
+                                                </p>
+                                        </li>
+
+                                        <li class="list-group-item">
+                                            <span class="badge badge-primary">
+                                                {{ $tweeterinfo['followers_count']  }}
+                                            </span>
+                                            Nombre de follower
+
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-success">{{ $tweeterinfo['friends_count']  }}</span>
+                                            Nombre de follow
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="badge badge-info">{{ $tweeterinfo['favourites_count']  }}</span>
+                                            Nombre de favoris
+                                        </li>
+                                        
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
 
 
 

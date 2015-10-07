@@ -22,9 +22,15 @@ class DashBoardController extends Controller{
     public function dashboard(){
 
 
-
         $videos =  collect(DB::connection('mongodb')->collection('videos')->get())->shuffle();
         $tweets =  DB::connection('mongodb')->collection('tweets')->take(15)->get();
+        $youtubeinfo =  DB::connection('mongodb')->collection('stats')
+            ->where(['origin' => 'Youtube', 'type' => 'infos'])
+            ->first();
+
+        $tweeterinfo =  DB::connection('mongodb')->collection('stats')
+            ->where(['origin' => 'Twitter', 'type' => 'infos'])
+            ->first();
 
         $actor = new Actors();
         $movie = new Movies();
@@ -62,7 +68,12 @@ class DashBoardController extends Controller{
             $delaiNextSessions[$session->id] = array('delai' => $delai, 'color' => $color);
         }
 
+
         $datas = [
+            'youtubeinfo' => $youtubeinfo['data'],
+            'youtubeinfodateupdated' => $youtubeinfo['created_at']->sec,
+            'tweeterinfo' => $tweeterinfo['data'][0],
+            'tweeterinfodateupdated' => $tweeterinfo['created_at']->sec,
             'videos' => $videos,
             'tweets' => $tweets,
             'dob' => $actor->actorsAge(),

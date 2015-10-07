@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Model\Stats;
 use App\Model\Videos;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +44,18 @@ class Youtube extends Command
     {
         $keyword = $this->argument('keyword');
 
+        $channel = Yt::getChannelByName('allocine');
+
+        if(!empty($channel)) {
+            DB::connection('mongodb')->collection('stats')
+                ->where(['origin' => 'Youtube', 'type' => 'infos'])->delete();
+
+            $stat = new Stats();
+            $stat->origin = "Youtube";
+            $stat->type = "infos";
+            $stat->data = $channel;
+            $stat->save();
+        }
 
         $params = array(
             'q'             => $keyword,
@@ -63,7 +76,7 @@ class Youtube extends Command
             }
         }
 
-        Log::info("Importd e l'Api video fait ");
+        Log::info("Import de l'API Youtube video done! ");
 
 
     }
