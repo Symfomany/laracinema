@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
 
-    var socket = io('http://localhost:3000');
+    var socket = io(window.location.hostname + ':3000');
 
     socket.on("messages-channel:App\\Events\\TchatEvent", function(message){
 
