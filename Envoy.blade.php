@@ -22,8 +22,6 @@
 @task('deploy', ['on' => 'web'])
     cd /var/www/html/laracinema
     ls -la
-    git add --all
-    git commit -m "changes"
     git pull origin {{ $branch }}
     composer update  --prefer-dist --no-dev --no-scripts
     chmod 777 -R storage
