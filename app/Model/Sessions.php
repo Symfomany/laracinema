@@ -52,5 +52,13 @@ class Sessions extends Model
                     ->get();
     }
 
+    public function scopeSessionsByMonths($query)
+    {
+        return $query->from('sessions')
+                ->select(DB::raw('DATE_FORMAT( date_session,  "%M" ) AS mois'),
+                DB::raw('COUNT( DATE_FORMAT( date_session,  "%M" )) AS nb'))
+            ->groupBy(DB::raw('DATE_FORMAT( date_session,  "%m" )'))
+            ->orderBy(DB::raw('DATE_FORMAT( date_session,  "%m" )'));
+    }
 
 }

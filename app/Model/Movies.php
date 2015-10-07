@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,12 @@ use Illuminate\Support\Facades\DB;
 class Movies extends Model
 {
 
-    /*Trait*/
+    use SluggableTrait;
+
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
 
     /**
      * Les films ne seront pas supprimés définitivement, mais mis à la corbeille

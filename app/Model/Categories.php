@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\DB;
 class Categories extends Model
 {
     protected $table = 'categories';
+
+
+    use SluggableTrait;
+
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
 
     /**
      * Relation avec la classe Movies
@@ -33,11 +42,14 @@ class Categories extends Model
             return Categories::all();
     }
 
+
+
+
     /**
      * Retourne la ou les catégorie(s) ayant le plus de films
      * @return mixed
      */
-    public function popular($limit = 1)
+    public function scopePopular($limit = 1)
     {
         $popular = DB::select('
               SELECT categories.title as title, COUNT( categories_id ) as nb_films
@@ -112,6 +124,22 @@ class Categories extends Model
     public function moviesByCategorie($category)
     {
         return Movies::where('categories_id', $category)->count();
+    }
+
+
+    /**
+     * Retourne le nombre de films pour chaque catégorie
+     * @return mixed
+     */
+    public function scopeBestCategories($query, $limit = 10)
+    {
+        return $query
+            ->select(DB::raw('count(movies.id ) AS nb'), 'categories.title AS title', 'categories.id AS id')
+            ->from('movies')
+            ->join('categories', 'categories.id', '=', 'movies.categories_id')
+            ->groupBy('categories_id')
+            ->orderBy('nb', 'DESC')
+            ->take($limit);
     }
 
     /**

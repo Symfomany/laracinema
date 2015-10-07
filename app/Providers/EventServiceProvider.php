@@ -14,6 +14,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'App\Events\TchatEvent' => [
+            'App\Handlers\Events\Tchat',
+        ],
         'App\Events\AdministratorsEvent' => [
             'App\Handlers\Events\Notification',
             'App\Handlers\Events\Email',

@@ -25,6 +25,7 @@
 
         <!-- Admin Forms CSS -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-forms.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-forms/css/admin-forms.css') }}">
 
     @show
 
@@ -36,7 +37,7 @@
 
 </head>
 
-<body  class="@section('bodyclass') ecommerce-page @show">
+<body  class="@section('bodyclass') ecommerce-page @show"  data-spy="scroll" data-target="#nav-spy" data-offset="300">
 
 <!-- Start: Main -->
 <div id="main" class="animated fadeIn">
@@ -56,8 +57,16 @@
 
 @section('js')
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="{{ asset('jquery/jquery_ui/jquery-ui.min.js') }}"></script>
+
+{{--SOcket IO--}}
+<script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+
+{{--<script>--}}
+    {{--//var socket = io('http://localhost:3000');--}}
+   {{----}}
+{{--</script>--}}
 
 <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
 {{--<script src="vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>--}}

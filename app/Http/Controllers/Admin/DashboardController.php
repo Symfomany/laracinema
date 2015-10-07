@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Actors;
 use App\Model\Categories;
 use App\Model\Comments;
+use App\Model\Messages;
 use App\Model\Movies;
 use App\Model\Sessions;
 use App\Model\Users;
@@ -69,12 +70,15 @@ class DashBoardController extends Controller{
         }
 
 
+
         $datas = [
+            "messages" => Messages::orderBy('created_at','desc')->take(10)->get(),
             'youtubeinfo' => $youtubeinfo['data'],
             'youtubeinfodateupdated' => $youtubeinfo['created_at']->sec,
             'tweeterinfo' => $tweeterinfo['data'][0],
             'tweeterinfodateupdated' => $tweeterinfo['created_at']->sec,
             'videos' => $videos,
+            'video' => $videos[0],
             'tweets' => $tweets,
             'dob' => $actor->actorsAge(),
             'city' => $actor->actorsorigin(),

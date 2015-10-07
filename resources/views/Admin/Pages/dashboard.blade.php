@@ -7,85 +7,24 @@
 @endsection
 @section('js')
     @parent
-    <script src="{{ asset('js/all.js') }}"></script>
 
     <!-- Page Javascript -->
     <script src="{{ asset('js/demo/charts/highcharts.js') }}"></script>
     <script src="{{ asset('js/utility/utility.js') }}"></script>
 
     <!-- Charts JS -->
-    <script src="{{ asset('plugins/highcharts/highcharts.js') }}"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-3d.js"></script>
+
     <script src="{{ asset('plugins/circles/circles.js') }}"></script>
     <script src="{{ asset('plugins/slick/slick.js') }}"></script>
 
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeJJa0CpvMqUJop4sOh3w8N3roqzfV_cg&libraries=geometry">
-    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeJJa0CpvMqUJop4sOh3w8N3roqzfV_cg&libraries=geometry"></script>
     <script src="{{ asset('plugins/map/gmaps.min.js') }}"></script>
     <script src="{{ asset('plugins/gmap/jquery.ui.map.min.js') }}"></script>
     <script src="{{ asset('plugins/gmap/ui/jquery.ui.map.extensions.min.js') }}"></script>
-
-
-
-    <script>
-        jQuery(document).ready(function() {
-
-            // This page contains more Initilization Javascript than normal.
-            // As a result it has its own js page. See charts.js for more info
-            demoHighCharts.init();
-
-            $('.center-mode').slick({
-                dots: true,
-                centerMode: false,
-                autoplay: true,
-                centerPadding: '60px',
-                slidesToShow: 7,
-                responsive: [{
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                }, {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
-                    }
-                }]
-            });
-
-            $('#map_canvas2').gmap({
-                'disableDefaultUI': true,
-                'callback': function() {
-                    var self = this;
-                    $("[data-gmapping]").each(function(i, el) {
-                        var data = $(el).data('gmapping');
-                        var title = $(el).data('title');
-                        self.addMarker({
-                            'id': data.id,
-                            'tags': data.tags,
-                            'position': new google.maps.LatLng(data.latlng.lat, data.latlng.lng),
-                            'bounds': true
-                        }, function(map, marker) {
-                            $(el).click(function() {
-                                $(marker).triggerEvent('click');
-                            });
-                        }).click(function() {
-                            self.openInfoWindow({
-                                'content': title
-                            }, this);
-                        });
-                    });
-                }
-            });
-
-        });
-    </script>
+    <script src="{{ asset('plugins/maxlength/bootstrap-maxlength.min.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 @endsection
 
 @section('title')
@@ -181,7 +120,7 @@
                                             <span class="panel-title fw600 text-info"><i class="fa fa-pie-chart"></i> Répartition par catégories des films</span>
                                         </div>
                                         <div class="panel-body pn">
-                                            <div id="high-pie" style="width: 100%; height: 210px; margin: 0 auto" data-highcharts-chart="6">
+                                            <div id="high-pie" data-url="{{ url('admin/api/categories')  }}" style="width: 100%; height: 285px; margin: 0 auto" data-highcharts-chart="6">
                                             </div>
                                         </div>
                                     </div>
@@ -191,28 +130,28 @@
                                     <!-- Circle Stats -->
                                     <div class="panel" data-panel-color="panel-info" data-panel-fullscreen="false" data-panel-title="false" data-panel-collapse="false">
                                         <div class="panel-heading">
-                                            <span class="panel-title fw600 text-info"><i class="fa fa-bar-chart"></i> Quelques Statistiques</span>
+                                            <span class="panel-title fw600 text-info"><i class="fa fa-bar-chart"></i> Quelques Statistiques sur les films</span>
                                         </div>
                                         <div class="panel-body">
                                             <div class="mb20 text-right">
                                                 <span class="fs11 text-muted">
-                                                  <i class="fa fa-circle text-warning fs12 pr5"></i> Twitter</span>
+                                                  <i class="fa fa-circle text-warning fs12 pr5"></i> Passés</span>
                                                 <span class="fs11 text-muted ml10">
-                                                  <i class="fa fa-circle text-info fs12 pr5"></i> Facebook</span>
+                                                  <i class="fa fa-circle text-info fs12 pr5"></i> Présent</span>
                                                 <span class="fs11 text-muted ml10">
-                                                  <i class="fa fa-circle text-primary fs12 pr5"></i> Google+</span>
+                                                  <i class="fa fa-circle text-primary fs12 pr5"></i> Futur</span>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4 text-center">
-                                                    <div class="info-circle" id="c1" title="Twitter" value="80" data-circle-color="primary">
+                                                    <div class="info-circle" id="c1" title="Passés" value="80" data-circle-color="primary">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="info-circle" id="c2" title="Facebook" value="30" data-circle-color="info">
+                                                    <div class="info-circle" id="c2" title="Présent" value="30" data-circle-color="info">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="info-circle" id="c3" title="Behance" value="55" data-circle-color="warning">
+                                                    <div class="info-circle" id="c3" title="Futur" value="55" data-circle-color="warning">
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,95 +187,36 @@
                                 <div class="panel panel-widget chat-widget">
                                     <div class="panel-heading">
                                         <span class="panel-icon">
-                                          <i class="fa fa-pencil"></i>
+                                          <i class="fa fa-comments"></i>
                                         </span>
-                                        <span class="panel-title"> Chat Widget</span>
+                                        <span class="panel-title"> Messagerie instantanée</span>
                                     </div>
-                                    <div class="panel-body bg-light dark panel-scroller scroller-lg pn">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="{{ asset('img/avatars/2.jpg') }}">
-                                                </a>
+                                    <div style="height: 300px" class="panel-body bg-light dark panel-scroller scroller-primary scroller-lg pn" id="container_tchat">
+
+                                        @foreach($messages as $message)
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img class="media-object" alt="64x64" src="{{ $message['data']['photo']  }}">
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <span class="media-status"></span>
+                                                    <h5 class="media-heading">{{ $message['data']['user']  }}
+                                                        <small>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($message['created_at']))->diffForHumans() }}</small>
+                                                    </h5> {{ $message['data']['message']  }}
+                                                </div>
                                             </div>
-                                            <div class="media-body">
-                                                <span class="media-status"></span>
-                                                <h5 class="media-heading">Courtney Faught
-                                                    <small> - 12:30am</small>
-                                                </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <span class="media-status offline"></span>
-                                                <h5 class="media-heading">Joe Gibbons
-                                                    <small> - 12:30am</small>
-                                                </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                            </div>
-                                            <div class="media-right">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="{{ asset('img/avatars/1.jpg') }}">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="{{ asset('img/avatars/2.jpg') }}">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <span class="media-status online"></span>
-                                                <h5 class="media-heading">Courtney Faught
-                                                    <small> - 12:30am</small>
-                                                </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <span class="media-status offline"></span>
-                                                <h5 class="media-heading">Joe Gibbons
-                                                    <small> - 12:30am</small>
-                                                </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                            </div>
-                                            <div class="media-right">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="{{ asset('img/avatars/1.jpg') }}">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="{{ asset('img/avatars/2.jpg') }}">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <span class="media-status online"></span>
-                                                <h5 class="media-heading">Courtney Faught
-                                                    <small> - 12:30am</small>
-                                                </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <span class="media-status offline"></span>
-                                                <h5 class="media-heading">Joe Gibbons
-                                                    <small> - 12:30am</small>
-                                                </h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
-                                            </div>
-                                            <div class="media-right">
-                                                <a href="#">
-                                                    <img class="media-object" alt="64x64" src="{{ asset('img/avatars/1.jpg') }}">
-                                                </a>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
                                     <div class="panel-footer">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Enter your message here...">
+
+
+                                        <div class="input-group" id="form_tchat">
+                                            <input data-token="{{ csrf_token() }}"  maxlength="100" type="text" class="form-control" placeholder="Régissez ici...">
                                               <span class="input-group-btn">
-                                                <button class="btn btn-default btn-gradient" type="button">Send Message</button>
+                                                <button class="btn btn-default btn-gradient" type="button"><span class="fa fa-pencil"></span> Ecrivez</button>
                                               </span>
                                         </div>
                                         <!-- /input-group -->
@@ -701,7 +581,6 @@
 
                             <div class="col-md-4">
 
-
                                 <div class="panel listgroup-widget">
                                     <div class="panel-heading">
                                 <span class="panel-icon">
@@ -752,6 +631,8 @@
 
 
 
+
+
                     <!-- dashboard metric chart -->
                     <div class="panel">
                         <div class="panel-heading">
@@ -761,192 +642,215 @@
                             <div id="ecommerce_chart1" style="height: 300px;"></div>
                         </div>
                     </div>
-
-                    <!-- recent activity table -->
-                    <div class="panel">
+                        <div class="panel">
                         <div class="panel-heading">
-                            <span class="panel-title hidden-xs"> Prochaines séances</span>
-                            <ul class="nav panel-tabs panel-tabs-merge">
-                                <li class="active">
-                                    <a href="#tab1_1" data-toggle="tab"> Top Sellers</a>
-                                </li>
-                                <li>
-                                    <a href="#tab1_2" data-toggle="tab"> Most Viewed</a>
-                                </li>
-                                <li>
-                                    <a href="#tab1_3" class="hidden-xs" data-toggle="tab"> New Customers</a>
-                                </li>
-                            </ul>
+                            <span class="panel-title"> Nombre de séances par mois</span>
                         </div>
                         <div class="panel-body pn">
-                            <div class="table-responsive">
-                                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
-                                    <thead>
-                                    <tr class="bg-light">
-                                        <th class="">Image</th>
-                                        <th class="">Product Title</th>
-                                        <th class="">SKU</th>
-                                        <th class="">Price</th>
-                                        <th class="">Stock</th>
-                                        <th class="text-right">Status</th>
+                            <div id="ecommerce_chart2" data-url="{{ url('admin/api/sessions') }}" ></div>
+                        </div>
+                    </div>
 
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td class="w100">
-                                            {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_1.jpg">--}}
-                                        </td>
-                                        <td class="">Apple Ipod 4G - Silver</td>
-                                        <td class="">#21362</td>
-                                        <td class="">$215</td>
-                                        <td class="">1,400</td>
-                                        <td class="text-right">
-                                            <div class="btn-group text-right">
-                                                <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                                                    <span class="caret ml5"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="#">Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Delete</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Archive</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="#">Complete</a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="#">Pending</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Canceled</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w100">
-                                            {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_2.jpg">--}}
-                                        </td>
-                                        <td class="">Apple Smart Watch - 1G</td>
-                                        <td class="">#15262</td>
-                                        <td class="">$455</td>
-                                        <td class="">2,100</td>
-                                        <td class="text-right">
-                                            <div class="btn-group text-right">
-                                                <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                                                    <span class="caret ml5"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="#">Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Delete</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Archive</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="#">Complete</a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="#">Pending</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Canceled</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w100">
-                                            {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_6.jpg">--}}
-                                        </td>
-                                        <td class="">Apple Macbook 4th Gen - Silver</td>
-                                        <td class="">#66362</td>
-                                        <td class="">$1699</td>
-                                        <td class="">6,100</td>
-                                        <td class="text-right">
-                                            <div class="btn-group text-right">
-                                                <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                                                    <span class="caret ml5"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="#">Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Delete</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Archive</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="#">Complete</a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="#">Pending</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Canceled</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w100">
-                                            {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_7.jpg">--}}
-                                        </td>
-                                        <td class="">Apple Iphone 16GB - Silver</td>
-                                        <td class="">#51362</td>
-                                        <td class="">$1299</td>
-                                        <td class="">5,200</td>
-                                        <td class="text-right">
-                                            <div class="btn-group text-right">
-                                                <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
-                                                    <span class="caret ml5"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="#">Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Delete</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Archive</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="#">Complete</a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="#">Pending</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Canceled</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <!-- recent activity table -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <span class="panel-title hidden-xs"> Prochaines séances</span>
+                                <ul class="nav panel-tabs panel-tabs-merge">
+                                    <li class="active">
+                                        <a href="#tab1_1" data-toggle="tab"> Top Sellers</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab1_2" data-toggle="tab"> Most Viewed</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab1_3" class="hidden-xs" data-toggle="tab"> New Customers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="panel-body pn">
+                                <div class="table-responsive">
+                                    <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                                        <thead>
+                                        <tr class="bg-light">
+                                            <th class="">Image</th>
+                                            <th class="">Product Title</th>
+                                            <th class="">SKU</th>
+                                            <th class="">Price</th>
+                                            <th class="">Stock</th>
+                                            <th class="text-right">Status</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="w100">
+                                                {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_1.jpg">--}}
+                                            </td>
+                                            <td class="">Apple Ipod 4G - Silver</td>
+                                            <td class="">#21362</td>
+                                            <td class="">$215</td>
+                                            <td class="">1,400</td>
+                                            <td class="text-right">
+                                                <div class="btn-group text-right">
+                                                    <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
+                                                        <span class="caret ml5"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="#">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Delete</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Archive</a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">Complete</a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a href="#">Pending</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Canceled</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w100">
+                                                {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_2.jpg">--}}
+                                            </td>
+                                            <td class="">Apple Smart Watch - 1G</td>
+                                            <td class="">#15262</td>
+                                            <td class="">$455</td>
+                                            <td class="">2,100</td>
+                                            <td class="text-right">
+                                                <div class="btn-group text-right">
+                                                    <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
+                                                        <span class="caret ml5"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="#">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Delete</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Archive</a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">Complete</a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a href="#">Pending</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Canceled</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w100">
+                                                {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_6.jpg">--}}
+                                            </td>
+                                            <td class="">Apple Macbook 4th Gen - Silver</td>
+                                            <td class="">#66362</td>
+                                            <td class="">$1699</td>
+                                            <td class="">6,100</td>
+                                            <td class="text-right">
+                                                <div class="btn-group text-right">
+                                                    <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
+                                                        <span class="caret ml5"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="#">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Delete</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Archive</a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">Complete</a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a href="#">Pending</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Canceled</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="w100">
+                                                {{--<img class="img-responsive mw20 ib mr10" title="user" src="assets/img/stock/products/thumb_7.jpg">--}}
+                                            </td>
+                                            <td class="">Apple Iphone 16GB - Silver</td>
+                                            <td class="">#51362</td>
+                                            <td class="">$1299</td>
+                                            <td class="">5,200</td>
+                                            <td class="text-right">
+                                                <div class="btn-group text-right">
+                                                    <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Active
+                                                        <span class="caret ml5"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="#">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Delete</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Archive</a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <li>
+                                                            <a href="#">Complete</a>
+                                                        </li>
+                                                        <li class="active">
+                                                            <a href="#">Pending</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">Canceled</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                        <div class="col-md-4">
+                                <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <span class="panel-title">Film aléatoire: <b>{{ $video['data']['snippet']['title'] }}</b></span>
+                                        </div>
+                                        <div class="panel-body border">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe src="https://www.youtube.com/embed/{{ str_replace('"', "", $video['data']['id']['videoId']) }}" frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                </div>
+                        </div>
 
                 </div>
                     <div class="row">
@@ -979,10 +883,6 @@
                         </div>
                 </div>
                 <!-- end: .tray-center -->
-
-
-
-
 
 
 

@@ -721,59 +721,7 @@ var demoHighCharts = function () {
             // Pie Charts
             var demoHighPies = function() { 
 
-                var pie1 = $('#high-pie');
-                 
-                if (pie1.length) {
 
-                    // Pie Chart1
-                    $('#high-pie').highcharts({
-                        credits: false,
-                        chart: {
-                            plotBackgroundColor: null,
-                            plotBorderWidth: null,
-                            plotShadow: false
-                        },
-                        title: {
-                            text: null
-                        },
-                        tooltip: {
-                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                        },
-                        plotOptions: {
-                            pie: {
-                                center: ['30%', '50%'],
-                                allowPointSelect: true,
-                                cursor: 'pointer',
-                                dataLabels: {
-                                    enabled: false
-                                },
-                                showInLegend: true
-                            }
-                        },
-                        colors: highColors,
-                        legend: {
-                            x: 90,
-                            floating: true,
-                            verticalAlign: "middle",
-                            layout: "vertical",
-                            itemMarginTop: 10
-                        },
-                        series: [{
-                            type: 'pie',
-                            name: 'Browser share',
-                            data: [
-                                ['Firefox', 35.0],
-                                ['IE', 36.8], {
-                                    name: 'Chrome',
-                                    y: 15.8,
-                                    sliced: true,
-                                    selected: true
-                                },
-                                ['Safari', 18.5],
-                            ]
-                        }]
-                    });
-                }
             } // End High Pie Charts Demo
 
             // Demo High Area Charts
@@ -852,7 +800,6 @@ var demoHighCharts = function () {
             demoHighColumns();
             demoHighLines();
             demoHighBars();
-            demoHighPies();
             demoHighAreas();
 
         } // End Demo HighCharts

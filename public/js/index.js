@@ -1,63 +1,177 @@
 jQuery(document).ready(function() {
 
-    "use strict";
+    var socket = io('http://localhost:3000');
 
-    // Init Theme Core
-    Core.init();
+    socket.on("messages-channel:App\\Events\\TchatEvent", function(message){
+
+        var media=$('<div class="media" style="display: none"><div class="media-left"></div><div class="media-body"><span class="media-status"></span><h5 class="media-heading"><small></small></h5></div></div>');
+
+        media.find('.media-body small').append(moment(message.data.time).fromNow());
+        img = $('<img class="media-object" />').attr('src', message.data.photo);
+        media.find('.media-left').append(img);
+        media.find('.media-body small').prepend(message.data.user);
+        media.find('.media-body').append(message.data.message);
+        $('#container_tchat .scroller-content').prepend(media.fadeIn('slow'));
+    });
+
+    $('#form_tchat button').click(function(){
+
+        var elt = $('#form_tchat input');
+        if(elt.val().length > 2){
+            $.post("admin/message",{message: elt.val(), _token: elt.data('token') }, function( data ) {
+                console.log(data);
+                $('#form_tchat input').val('');
+            });
+        }
+
+    });
+
+
+    // This page contains more Initilization Javascript than normal.
+    // As a result it has its own js page. See charts.js for more info
+        demoHighCharts.init();
+
+        $('.center-mode').slick({
+            dots: true,
+            centerMode: false,
+            autoplay: true,
+            centerPadding: '60px',
+            slidesToShow: 7,
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3
+                }
+            }, {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
+            }]
+        });
+
+        $('#map_canvas2').gmap({
+            'disableDefaultUI': true,
+            'callback': function() {
+                var self = this;
+                $("[data-gmapping]").each(function(i, el) {
+                    var data = $(el).data('gmapping');
+                    var title = $(el).data('title');
+                    self.addMarker({
+                        'id': data.id,
+                        'tags': data.tags,
+                        'position': new google.maps.LatLng(data.latlng.lat, data.latlng.lng),
+                        'bounds': true
+                    }, function(map, marker) {
+                        $(el).click(function() {
+                            $(marker).triggerEvent('click');
+                        });
+                    }).click(function() {
+                        self.openInfoWindow({
+                            'content': title
+                        }, this);
+                    });
+                });
+            }
+        });
 
 
 
     var pie1 = $('#high-pie');
 
     if (pie1.length) {
-        // Pie Chart1
-        $('#high-pie').highcharts({
-            credits: false,
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: null
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    center: ['30%', '50%'],
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            colors: highColors,
-            legend: {
-                x: 90,
-                floating: true,
-                verticalAlign: "middle",
-                layout: "vertical",
-                itemMarginTop: 10
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: [
-                    ['Firefox', 35.0],
-                    ['IE', 36.8], {
-                        name: 'Chrome',
-                        y: 15.8,
-                        sliced: true,
-                        selected: true
-                    },
-                    ['Safari', 18.5],
-                ]
-            }]
+
+        $.getJSON($('#high-pie').data('url'), function( datas ) {
+
+            $('#high-pie').highcharts({
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                title: null,
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}'
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Répartition du nb de film par catégories',
+                    data: datas
+                }]
+            });
+
         });
+
+    }
+
+    // Init Bootstrap Maxlength Plugin
+    $('input[maxlength]').maxlength({
+        threshold: 50,
+        placement: "bottom"
+    });
+
+    var pie1 = $('#ecommerce_chart2');
+
+    if (pie1.length) {
+
+        //$.getJSON($('#high-pie').data('url'), function( datas ) {
+        $.getJSON($('#ecommerce_chart2').data('url'), function( datas ) {
+
+            $('#ecommerce_chart2').highcharts({
+                chart: {
+                    type: 'column',
+                    margin: 75,
+                    options3d: {
+                        enabled: true,
+                        alpha: 10,
+                        beta: 0,
+                        depth: 50
+                    }
+                },
+                title: null,
+                subtitle: null,
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                xAxis: {
+                    categories: Highcharts.getOptions().lang.shortMonths
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    }
+                },
+                series: [{
+                    name: null,
+                    data: datas
+                }]
+            });
+        });
+
+        //});
+
     }
 
 

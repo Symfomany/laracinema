@@ -10,7 +10,10 @@
         "laravel/framework": "5.1.*",
         "jenssegers/mongodb": "^2.2",
         "alaouy/youtube": "^1.2",
-        "thujohn/twitter": "^2.0"
+        "thujohn/twitter": "^2.0",
+        "cviebrock/eloquent-sluggable": "^3.0",
+        "predis/predis": "^1.0"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
