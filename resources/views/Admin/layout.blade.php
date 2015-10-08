@@ -60,13 +60,8 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="{{ asset('jquery/jquery_ui/jquery-ui.min.js') }}"></script>
 
-{{--SOcket IO--}}
+{{--Socket IO--}}
 <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
-
-{{--<script>--}}
-    {{--//var socket = io('http://localhost:3000');--}}
-   {{----}}
-{{--</script>--}}
 
 <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
 {{--<script src="vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>--}}
@@ -76,23 +71,15 @@
 <script src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
 <script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 <script src="{{ asset('plugins/bstimeout/bs-timeout.js') }}"></script>
-<script src="{{ asset('plugins/nprogress/nprogress.js') }}"></script>
+<script src="{{ asset('plugins/pnotify/pnotify.js') }}"></script>
 
 <!-- Theme Javascript -->
 <script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('js/demo/widgets.js') }}"></script>
 
 <script>
     jQuery(document).ready(function() {
-
         "use strict";
-
-        // Init Theme Core
         Core.init();
-
-
-
-
     });
 </script>
 @show

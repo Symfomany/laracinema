@@ -51,30 +51,6 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script src="{{ asset('jquery/jquery_ui/jquery-ui.min.js') }}"></script>
 
-<!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
-{{--<script src="vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>--}}
-{{--<script src="vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script>--}}
-
-<!-- FullCalendar Plugin + moment Dependency -->
-<script src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
-<script src="{{ asset('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
-
-<!-- Theme Javascript -->
-<script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('js/demo/widgets.js') }}"></script>
-
-<script>
-    jQuery(document).ready(function() {
-
-        "use strict";
-
-        // Init Theme Core
-        Core.init();
-
-    });
-</script>
-@show
-
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Events\AdministratorsEvent;
+use App\Events\NotificationsEvent;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,11 +69,12 @@ class AuthController extends Controller
 
         $user = $this->create($request->all());
 
-
         // fire launch on administrateurs....
         Event::fire(new AdministratorsEvent($user));
 
         Auth::login($user);
+
+
 
         return redirect($this->redirectPath());
     }
@@ -100,7 +102,9 @@ class AuthController extends Controller
 
         $credentials = $this->getCredentials($request);
 
+
         if (Auth::attempt($credentials, $request->has('remember'))) {
+            Event::fire(new NotificationsEvent("Un administrateur vient de se connecter"));
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 
@@ -116,6 +120,15 @@ class AuthController extends Controller
             ->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
             ]);
+    }
+
+    public function getLogout()
+    {
+        Event::fire(new NotificationsEvent("Un administrateur vient de se deconnecter", "danger"));
+
+        Auth::logout();
+
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 
 

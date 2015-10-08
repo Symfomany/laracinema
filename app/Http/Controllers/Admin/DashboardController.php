@@ -22,7 +22,6 @@ class DashBoardController extends Controller{
 
     public function dashboard(){
 
-
         $videos =  collect(DB::connection('mongodb')->collection('videos')->get())->shuffle();
         $tweets =  DB::connection('mongodb')->collection('tweets')->take(15)->get();
         $youtubeinfo =  DB::connection('mongodb')->collection('stats')

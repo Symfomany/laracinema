@@ -29,6 +29,7 @@ class AuthLoginEventHandler
      */
     public function handle(User $user, $remember)
     {
+
         $user->authentificated_at = new \DateTime;
         $user->ip = Request::getClientIp();
         $user->save();

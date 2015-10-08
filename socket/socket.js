@@ -6,7 +6,12 @@ var redis = new Redis();
 
 //suscribe on messages-channel
 redis.subscribe('messages-channel', function(err, count) {
+    console.log('Messages NOtif');
 
+});
+
+redis.subscribe('notifications-channel', function(err, count) {
+console.log('Channel Notif');
 });
 
 redis.on('message', function(channel, message) {
