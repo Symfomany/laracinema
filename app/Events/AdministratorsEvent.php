@@ -11,8 +11,16 @@ class AdministratorsEvent extends Event
     use SerializesModels;
 
 
-    protected $user;
+    protected $view;
 
+
+    /**
+     * @var
+     */
+    protected $subject;
+
+
+    protected $data;
 
 
     /**
@@ -20,9 +28,12 @@ class AdministratorsEvent extends Event
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct( $view)
     {
-        $this->user = $user;
+        $this->view = "emails.create";
+        $this->data = array();
+        $this->subject = "Un adminstrateur a crée son compte";
+
     }
 
     /**
@@ -36,19 +47,51 @@ class AdministratorsEvent extends Event
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUser()
+    public function getView()
     {
-        return $this->user;
+        return $this->view;
     }
 
     /**
-     * @param mixed $user
+     * @param string $view
      */
-    public function setUser($user)
+    public function setView($view)
     {
-        $this->user = $user;
+        $this->view = $view;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param array $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param mixed $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
     }
 
 

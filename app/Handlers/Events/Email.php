@@ -3,8 +3,10 @@
 namespace App\Handlers\Events;
 
 use App\Events\AdministratorsEvent;
+use App\Events\TasksEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -16,14 +18,26 @@ use Illuminate\Support\Facades\Mail;
  */
 class Email implements ShouldQueue
 {
+    protected $subject;
+    protected $email;
+    protected $nom;
+    protected $view;
+
+
     /**
      * Create the event handler.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($subjet = "Bienvenue sur la Plateforme",
+                                $email="julien@meetserious.com",
+                                $nom = "Boyer Julien",
+                                $view = "emails.create"
+)
     {
-        //
+        $this->subject = $subjet;
+        $this->email = $email;
+        $this->nom = $nom;
     }
 
     /**
@@ -32,11 +46,13 @@ class Email implements ShouldQueue
      * @param  AdministratorsEvent  $event
      * @return void
      */
-    public function handle(AdministratorsEvent $event)
+    public function handle(TasksEvent $event)
     {
-        Mail::send('emails.create', ['user' => $event->getUser()], function($message)
+        Mail::send($event->getView(), ['data' => $event->getData(), 'user' => Auth::user()], function($message) use($event)
         {
-            $message->to('julien@meetserious.com', 'Boyer Julien')->subject('Administrateur crée sur la plateforme');
+            $message
+                ->to($this->email, $this->nom)
+                ->subject($event->getSubject());
         });
     }
 }

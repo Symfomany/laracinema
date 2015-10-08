@@ -2,8 +2,7 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use Jenssegers\Mongodb\Model;
 
 
 /**
@@ -12,18 +11,18 @@ use Illuminate\Support\Facades\DB;
  */
 class Tasks extends Model
 {
-    protected $table = 'tasks';
 
-    public function movies()
-    {
-        return $this->hasMany('App\Model\Movies');
-    }
+    /**
+     * @var string
+     */
+    protected $connection = 'mongodb';
 
 
-    public function administrators()
-    {
-        return $this->hasMany('App\Model\Administrators');
-    }
+    /**
+     * @var string
+     */
+    protected $collection = 'tasks';
+
 
 
 }

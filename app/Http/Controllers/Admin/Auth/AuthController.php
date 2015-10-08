@@ -69,11 +69,10 @@ class AuthController extends Controller
 
         $user = $this->create($request->all());
 
-        // fire launch on administrateurs....
-        Event::fire(new AdministratorsEvent($user));
-
         Auth::login($user);
 
+        // fire launch on administrateurs....
+        Event::fire(new AdministratorsEvent());
 
 
         return redirect($this->redirectPath());

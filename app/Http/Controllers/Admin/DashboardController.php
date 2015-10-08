@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 
 
 
+use App\Events\NotificationsEvent;
+use App\Events\TasksEvent;
 use App\Http\Controllers\Controller;
 use App\Model\Actors;
 use App\Model\Categories;
@@ -12,10 +14,11 @@ use App\Model\Comments;
 use App\Model\Messages;
 use App\Model\Movies;
 use App\Model\Sessions;
+use App\Model\Tasks;
 use App\Model\Users;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Thujohn\Twitter\Facades\Twitter;
 
 class DashBoardController extends Controller{
 
@@ -71,6 +74,7 @@ class DashBoardController extends Controller{
 
 
         $datas = [
+            "tasks" => Tasks::orderBy('created_at','desc')->take(20)->get(),
             "messages" => Messages::orderBy('created_at','desc')->take(10)->get(),
             'youtubeinfo' => $youtubeinfo['data'],
             'youtubeinfodateupdated' => $youtubeinfo['created_at']->sec,
@@ -101,6 +105,20 @@ class DashBoardController extends Controller{
         return view('Admin/Pages/dashboard', $datas);
     }
 
+
+    /**
+     * Create Task
+     * @param Request $request
+     * @return array
+     */
+    public function task(Request $request){
+
+        event(new TasksEvent($request->message, $request->criticity));
+        event(new NotificationsEvent("Un administrateur vient de se créer une tâche", $request->criticity));
+
+        return array(true);
+
+    }
 
 
 }

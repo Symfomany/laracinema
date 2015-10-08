@@ -14,13 +14,38 @@ jQuery(document).ready(function() {
         $('#container_tchat .scroller-content').prepend(media.fadeIn('slow'));
     });
 
+
+    socket.on("tasks-channel:App\\Events\\TasksEvent", function(message){
+
+        var media=$('#list_tasks .task-item:first').clone();
+
+        media.find('.task-desc span').text(message.data.task);
+        media.addClass(message.data.criticity);
+        $('#list_tasks').prepend(media.fadeIn('slow'));
+    });
+
+
     $('#form_tchat button').click(function(){
 
         var elt = $('#form_tchat input');
         if(elt.val().length > 2){
             $.post("admin/message",{message: elt.val(), _token: elt.data('token') }, function( data ) {
-                console.log(data);
                 $('#form_tchat input').val('');
+            });
+        }
+
+    });
+
+
+
+    $('#form_task button').click(function(){
+
+        var elt = $('#form_task input');
+        var criticity = $('#form_task select');
+
+        if(elt.val().length > 2){
+            $.post("admin/task",{message: elt.val(),criticity: criticity.val(), _token: elt.data('token') }, function( data ) {
+                $('#form_task input').val('');
             });
         }
 

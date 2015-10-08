@@ -9,18 +9,16 @@ socket.on("notifications-channel:App\\Events\\NotificationsEvent", function(mess
    var texto = message.data.message;
    var severity = message.data.severity;
 
-
    // Create new Notification
    new PNotify({
       title: texto,
       text: user,
-      shadow: true,
-      opacity: "0.75",
       type: severity,
       delay: 3000
    });
 
 });
+
 
 
 

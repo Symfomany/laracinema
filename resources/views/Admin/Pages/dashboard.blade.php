@@ -264,114 +264,75 @@
                             <div class="panel panel-widget task-widget ui-sortable">
                                 <div class="panel-heading cursor">
                                 <span class="panel-icon">
-                                  <i class="fa fa-cog"></i>
+                                  <i class="fa fa-tasks"></i>
                                 </span>
-                                    <span class="panel-title"> Task-List Widget</span>
+                                    <span class="panel-title">Tâches à faire</span>
                                 </div>
-                                <div class="panel-body pn">
 
-                                    <ul class="task-list task-current">
-                                        <li class="task-item success">
+                                <div class="panel-body panel-body bg-light dark panel-scroller scroller-success scroller-lg">
+
+                                    <ul class="task-list task-current" id="list_tasks">
+
+                                        <li style="display: none" class="task-item success">
                                             <div class="task-handle">
                                                 <div class="checkbox-custom">
                                                     <input type="checkbox" id="task1">
                                                     <label for="task1"></label>
                                                 </div>
                                             </div>
-                                            <div class="task-desc">Create documentation for launch</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item primary">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task2">
-                                                    <label for="task2"></label>
-                                                </div>
+                                            <div class="task-desc">
+                                                <small class="pull-right"><i>Maintenant</i></small>
+                                                <span></span>
                                             </div>
-                                            <div class="task-desc">Add new servers to design board</div>
                                             <div class="task-menu ui-sortable-handle"></div>
                                         </li>
-                                        <li class="task-item info">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task3">
-                                                    <label for="task3"></label>
+
+                                        @foreach($tasks as $task)
+                                            <li class="task-item @if($task['state'] == 0) item-checked @endif {{ empty($task['criticity'])? "success" : $task['criticity'] }}">
+                                                <div class="task-handle">
+                                                    <div class="checkbox-custom">
+                                                        <input type="checkbox" id="task1">
+                                                        <label for="task1"></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="task-desc">Finish building prototype for Sony</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item warning">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task4">
-                                                    <label for="task4"></label>
+                                                <div class="task-desc">
+                                                    <small class="pull-right">
+                                                        <i>{{ \Carbon\Carbon::createFromTimeStamp(strtotime($task['created_at']))->diffForHumans() }}</i>
+                                                    </small>
+                                                    {{ $task['message'] }}
                                                 </div>
-                                            </div>
-                                            <div class="task-desc">Order new building supplies for Microsoft</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item system">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task5">
-                                                    <label for="task5"></label>
-                                                </div>
-                                            </div>
-                                            <div class="task-desc">Add new servers to design board</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item system">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task5">
-                                                    <label for="task5"></label>
-                                                </div>
-                                            </div>
-                                            <div class="task-desc">Add new servers to design board</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item system">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task5">
-                                                    <label for="task5"></label>
-                                                </div>
-                                            </div>
-                                            <div class="task-desc">Add new servers to design board</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item system">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task5">
-                                                    <label for="task5"></label>
-                                                </div>
-                                            </div>
-                                            <div class="task-desc">Add new servers to design board</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item system">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task5">
-                                                    <label for="task5"></label>
-                                                </div>
-                                            </div>
-                                            <div class="task-desc">Add new servers to design board</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
-                                        <li class="task-item system">
-                                            <div class="task-handle">
-                                                <div class="checkbox-custom">
-                                                    <input type="checkbox" id="task5">
-                                                    <label for="task5"></label>
-                                                </div>
-                                            </div>
-                                            <div class="task-desc">Add new servers to design board</div>
-                                            <div class="task-menu ui-sortable-handle"></div>
-                                        </li>
+                                                <div class="task-menu ui-sortable-handle"></div>
+                                            </li>
+                                        @endforeach
+
                                     </ul>
+                                </div>
+                                <div class="panel-footer">
+                                    <div  id="form_task">
+                                        <div class="section col-md-9">
+                                            <input data-token="{{ csrf_token() }}"class="form-control" maxlength="100" placeholder="Enter your task here...">
+                                        </div>
+                                        <div class="section col-md-3">
+                                            <label class="field select">
+                                                <select  class="form-control">
+                                                    <option value=""></option>
+                                                    <option value="info">Info</option>
+                                                    <option value="success">Success</option>
+                                                    <option value="warning">Warning</option>
+                                                    <option value="danger">Danger</option>
+                                                    <option value="primary">Primary</option>
+                                                    <option value="default">Default</option>
+                                                </select>
+                                                <i class="arrow"></i>
+                                            </label>
+                                        </div>
+
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="button"><i class="fa fa-tasks"></i> Envoyer votre Task</button>
+                                          </span>
+
+                                    </div>
+                                    <!-- /input-group -->
                                 </div>
 
                             </div>

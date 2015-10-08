@@ -6,13 +6,15 @@ var redis = new Redis();
 
 //suscribe on messages-channel
 redis.subscribe('messages-channel', function(err, count) {
-    console.log('Messages NOtif');
+});
 
+//suscribe on messages-channel
+redis.subscribe('tasks-channel', function(err, count) {
 });
 
 redis.subscribe('notifications-channel', function(err, count) {
-console.log('Channel Notif');
 });
+
 
 redis.on('message', function(channel, message) {
     message = JSON.parse(message);
